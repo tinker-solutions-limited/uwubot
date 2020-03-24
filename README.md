@@ -1,0 +1,2 @@
+# uwubot
+discord uwubot
