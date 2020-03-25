@@ -2,7 +2,7 @@
 
 import os
 
-import discord
+from discord.ext import commands
 from dotenv import load_dotenv
 
 import uwulib
@@ -10,43 +10,27 @@ import uwulib
 load_dotenv()
 
 TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD = os.getenv('DISCORD_GUILD')
 
-client = discord.Client()
+bot = commands.Bot(command_prefix='!', help="I am the bot of puwe cancew uwu")
 
+@bot.command(name='hello', help=uwulib.uwu("Responds to a user!"))
+async def hello_uwu(ctx):
+    hello = uwulib.uwu(f'Hello {ctx.author.mention}!')
+    await ctx.send(hello)
 
-@client.event
-async def on_ready():
-    print(uwulib.uwu(f'{client.user} has connected to Discord!'))
-
-    guild = discord.utils.get(client.guilds, name=GUILD)
-
-    print(uwulib.uwu(f'{client.user} is connected to the following guild:\n'))
-    print(uwulib.uwu(f'{guild.name}(id: {guild.id})'))
-
-@client.event
-async def on_member_join(member):
-    await member.create_dm()
-    await member.dm_channel.send(uwulib.uwu(
-        f'Hi {member.name}, welcome to the {guild.name} Discord server!'
-        ))
-
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-
-    if message.content.startswith("!hello"):
-        await message.channel.send(uwulib.uwu(f'Hello {message.author.mention}!'))
-    elif message.content.startswith("!uwu"):
-        usr = message.content.split()[1]
-        print(f'{usr} vs {client.user}')
-        if usr == client.user:
-            await message.channel.send(uwulib.uwu("no u!"))
-
+@bot.command(name="uwu", help=uwulib.uwu("Coming soon! ;)"))
+async def uwuify(ctx, usr):
+    # find usr's last message
+        # kind of a challenge because there are a few different ways a
+        # user can be referred (mention, whole user, partial user)
+    # uwuify it
+    # post it
+    # hash the message and add to list so we can check if it's already been uwu'd
+    # don't uwu uwubot's own messages - respond with "nyo u"
+    await ctx.send(uwulib.uwu("nothing to uwu!"))
 
 def main():
-    client.run(TOKEN)
+    bot.run(TOKEN)
 
 if __name__ == '__main__':
     main()
