@@ -12,6 +12,12 @@ pip3 install -U discord python-dotenv
 
 The script loads a .env file in the same directory with the bot's token.
 
+## Resources
+
+* https://realpython.com/how-to-make-a-discord-bot-python/
+* discordapp.com/developers
+* https://discordpy.readthedocs.io/en/latest/api.html
+
 ## Commands
 
 ### !uwu <user>
