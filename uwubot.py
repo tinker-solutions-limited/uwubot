@@ -20,7 +20,7 @@ async def hello_uwu(ctx):
 
 @bot.command(name="uwu", help=uwulib.uwu("Coming soon! ;)"))
 async def uwuify(ctx, usr):
-    # find usr's last message
+    # find user's last message
         # kind of a challenge because there are a few different ways a
         # user can be referred (mention, whole user, partial user)
     # uwuify it
