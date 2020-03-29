@@ -10,7 +10,7 @@
 ## Set-up
 
 ```#bash
-python3 setup.py install
+python3 setup.py install <--user>
 ```
 
 Modify `.env` with your discord bot's token.
