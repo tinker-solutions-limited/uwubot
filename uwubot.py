@@ -23,15 +23,23 @@ async def hello_uwu(ctx):
     await ctx.send(hello)
 
 @bot.command(name="uwu", help=uwulib.uwu("Coming soon! ;)"))
-async def uwuify(ctx, user):
+async def uwu(ctx, user):
+    # TODO: 
     # find user's last message
-        # kind of a challenge because there are a few different ways a
-        # user can be referred (mention, whole user, partial user)
+    #   to keep it simple, let's search only by @ mention.  
     # uwuify it
     # post it
     # hash the message and add to list so we can check if it's already been uwu'd
     # don't uwu uwubot's own messages - respond with "nyo u"
     await ctx.send(uwulib.uwu("nothing to uwu!"))
+
+@bot.command(name="uwuify", help=uwulib.uwu("uwuifies the text in <text>"))
+async def uwuify(ctx, text):
+    # TODO: if text is not empty, return it as an uwu string/
+    if isinstance(text, str) and len(text) > 0:
+        await ctx.send(uwulib.uwu(text))
+    else:
+        await ctx.send(uwulib.uwu("there's no string to uwu!"))
 
 # Bot Event Responses
 
@@ -42,6 +50,9 @@ async def on_ready():
 @bot.event
 async def on_message(message):
     if 'linux' in message.content:
+        # TODO: Look back in message at 'linux' to make sure we're not
+        #       insulting someone who says it correctly: gnu/linux,
+        #       gnu+linux, or I guess gnulinux.
         await message.channel.send(combative_linux_guy)
     await bot.process_commands(message)
 
